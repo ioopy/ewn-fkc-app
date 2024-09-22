@@ -2,11 +2,13 @@ import streamlit as st
 from menu import menu_with_redirect
 import pandas as pd
 import plotly.express as px
+from utils.func import hide_header_icons
 from utils.load_data import get_data, get_reviews
 from utils.text_editor import generate
 import plotly.graph_objects as go
 
 menu_with_redirect()
+hide_header_icons()
 
 def categorize_retention(count):
     if count == 2:

@@ -1,6 +1,7 @@
 import streamlit as st
 from menu import menu_with_redirect
 import pandas as pd
+from utils.func import hide_header_icons
 from wordcloud import WordCloud
 import plotly.express as px
 import matplotlib.pyplot as plt
@@ -14,6 +15,7 @@ from pythainlp import Tokenizer
 import re
 
 menu_with_redirect()
+hide_header_icons()
 
 def preprocess_text(text):
     if not isinstance(text, str):

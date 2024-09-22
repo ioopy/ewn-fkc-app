@@ -2,10 +2,12 @@ import streamlit as st
 from menu import menu_with_redirect
 import pandas as pd
 import plotly.express as px
+from utils.func import hide_header_icons
 from utils.load_data import get_data, get_reviews
 from utils.text_editor import generate, get_color_template
 
 menu_with_redirect()
+hide_header_icons()
 
 st.header(":blue[การวิเคราะห์ที่ 6]", divider=True)
 st.subheader("ความสัมพันธ์ระหว่างเปอร์เซ็นต์ส่วนลดกับยอดขายเป็นอย่างไร")

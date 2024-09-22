@@ -2,12 +2,14 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 from menu import menu_with_redirect
+from utils.func import hide_header_icons
 from utils.text_editor import generate
 from utils.load_data import get_data, get_reviews
 import plotly.express as px
 import numpy as np
 
 menu_with_redirect()
+hide_header_icons()
 
 st.header(":blue[การวิเคราะห์ที่ 5]", divider=True)
 st.subheader("ตั้งราคาขายเท่าไหร่ดี")

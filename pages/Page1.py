@@ -2,10 +2,13 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 from menu import menu_with_redirect
+from utils.func import hide_header_icons
 from utils.text_editor import generate
 from utils.load_data import get_data, get_reviews
 
 menu_with_redirect()
+hide_header_icons()
+
 st.header(":blue[การวิเคราะห์ที่ 1]", divider=True)
 st.subheader("ระหว่าง _Shopee_ และ _Lazada_ แพลตฟอร์มไหนเหมาะสมกับการเปิดร้านค้าออนไลน์มากกว่ากัน")
 
