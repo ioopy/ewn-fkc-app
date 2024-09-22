@@ -7,7 +7,7 @@ from streamlit_authenticator.utilities.exceptions import (LoginError)
 
 hide_github_icon = """
                     <style>
-                    #stActionButton {
+                    .stActionButton {
                         visibility: hidden;
                     }
                     </style>
