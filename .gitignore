@@ -14,7 +14,7 @@ env/
 # Cache & Logs
 streamlit/*.log
 streamlit/static
-.streamlit/
+.streamlit/secrets.toml
 *.log
 *.sqlite
 *.db
