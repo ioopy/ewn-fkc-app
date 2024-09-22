@@ -89,18 +89,29 @@ fig.update_layout(
     xaxis_title="",
     yaxis_title="ราคาขาย",
     showlegend=True,
-    legend_title_text="Level",
     xaxis_tickfont_size=16,
     yaxis_tickfont_size=16,
-    margin=dict(t=20),
     font=dict(
         size=18,
     ),
     legend=dict(
-        y=0.9,
-    )
+        orientation="h",        # Set the legend orientation to horizontal
+        yanchor="bottom",       # Anchor the legend at the bottom
+        y=1,                    # Position the legend above the graph
+        xanchor="center",       # Center the legend horizontally
+        x=0.5                   # Set the legend to the center of the x-axis
+    ),
+    legend_title_text=''
 )
 st.plotly_chart(fig)
 
-
+desc_msg = '''
+    **คำอธิบาย:**\n
+    Shopee และ Lazada มีราคาขายเฉลี่ยที่แตกต่างกันอย่างชัดเจน โดย **Shopee** มีราคาขายเฉลี่ยที่ **239.73 บาท** ซึ่งสูงกว่า **Lazada** ที่มีราคาขายเฉลี่ยเพียง **161.68 บาท** การตั้งราคาสำหรับสินค้าในแต่ละแพลตฟอร์มจึงควรพิจารณาตามพฤติกรรมการซื้อของลูกค้าในแพลตฟอร์มนั้นๆ หากกลุ่มลูกค้ามีกำลังซื้อสูง สามารถตั้งราคาสูงกว่าได้ Shopee อาจเป็นแพลตฟอร์มที่เหมาะสม ขณะที่สินค้าราคาย่อมเยาเหมาะกับ Lazada มากกว่า
+'''
+summary_msg = '''
+    **สรุป:** การตั้งราคาควรพิจารณาตามกลุ่มเป้าหมาย Shopee เหมาะกับสินค้าที่สามารถตั้งราคาสูงกว่า ขณะที่ Lazada เหมาะสำหรับสินค้าราคาย่อมเยาที่ต้องการเจาะตลาดลูกค้าราคาถูก
+'''
+st.markdown(desc_msg)
+st.markdown(summary_msg)
 

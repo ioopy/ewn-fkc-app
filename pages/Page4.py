@@ -11,6 +11,7 @@ from pythainlp.util import normalize
 from utils.load_data import get_data, get_reviews
 from utils.text_editor import generate, get_color_template
 from pythainlp import Tokenizer
+import re
 
 menu_with_redirect()
 
@@ -77,8 +78,8 @@ def generate_wordcloud_and_count(text):
     
     # Calculate word count
     word_count = Counter(words)
-    
-    return wordcloud, word_count
+    most_common_words = word_count.most_common(20)
+    return wordcloud, most_common_words
 
 def classify_sold_amount(sold_amount):
     if sold_amount > 1000:
@@ -90,6 +91,7 @@ def classify_sold_amount(sold_amount):
     
 def gen_word(data):
     text = ' '.join(data['product_name_clean'].dropna().astype(str))
+    text = re.sub(r'[^ก-๙a-zA-Z\s]', '', text)
     wordcloud, word_count = generate_wordcloud_and_count(text)
 
     # Display word cloud using Plotly
@@ -99,8 +101,8 @@ def gen_word(data):
 
     # Display word count
     st.subheader("Word Count")
-    word_count_df = pd.DataFrame(word_count.items(), columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
-    st.write(word_count_df)
+    word_count_df = pd.DataFrame(word_count, columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
+    st.dataframe(word_count_df, hide_index=True)
 
 st.header(":blue[การวิเคราะห์ที่ 4]", divider=True)
 st.subheader("คำใดควรเป็นชื่อผลิตภัณฑ์ที่โฆษณา")
@@ -127,3 +129,13 @@ gen_word(data)
 # st.write(data_filter_n)
 # st.write("Word normal sold")
 # gen_word(data_filter_n)
+
+desc_msg = '''
+    **คำอธิบาย:**\n
+    การวิเคราะห์ชื่อสินค้าที่ขายดีบน Shopee และ Lazada พบว่าคำที่เกี่ยวข้องกับสุขภาพและคุณสมบัติพิเศษ เช่น "เส้นไข่ขาว", "ไรแป้ง", "Keto", และ "โปรตีน" มักปรากฏบ่อยในชื่อสินค้าที่มียอดขายสูง คำเหล่านี้แสดงถึงความเป็นเอกลักษณ์ของสินค้าที่มีคุณสมบัติพิเศษ เช่น สินค้าเพื่อสุขภาพหรือการรับประทานอาหารที่ปลอดภัย ดังนั้น การใช้คำเหล่านี้ในการตั้งชื่อผลิตภัณฑ์จะช่วยให้ชื่อสินค้าดูโดดเด่น ดึงดูดความสนใจจากกลุ่มลูกค้าที่มองหาสินค้าที่มีคุณสมบัติเฉพาะเจาะจง
+'''
+summary_msg = '''
+    **สรุป:** คำที่เกี่ยวข้องกับสุขภาพ เช่น "เส้นไข่ขาว", "ไรแป้ง", "Keto", และ "โปรตีน" ควรใช้ในการตั้งชื่อผลิตภัณฑ์เพื่อดึงดูดความสนใจของลูกค้าที่ให้ความสำคัญกับสุขภาพและคุณภาพสินค้า
+'''
+st.markdown(desc_msg)
+st.markdown(summary_msg)

@@ -73,16 +73,20 @@ fig = px.scatter(grouped_data, x="discount_range", y="reviews_category",
 fig.update_layout(
     xaxis_title="ส่วนลด (%)",
     yaxis_title="",
-    legend_title_text="Marketplace",
     xaxis_tickfont_size=16,
     yaxis_tickfont_size=16,
-    margin=dict(t=20),
+    # margin=dict(t=35),
     font=dict(
         size=18,
     ),
     legend=dict(
-        y=0.9,
-    )
+        orientation="h",        # Set the legend orientation to horizontal
+        yanchor="bottom",       # Anchor the legend at the bottom
+        y=1,                    # Position the legend above the graph
+        xanchor="center",       # Center the legend horizontally
+        x=0.5                   # Set the legend to the center of the x-axis
+    ),
+    legend_title_text=''
 )
 
 # grouped_data_good = grouped_data[grouped_data['reviews_category'] == "ดี (Good)"]
@@ -93,3 +97,12 @@ fig.update_layout(
 #                    )
 
 st.plotly_chart(fig)
+desc_msg = '''
+    **คำอธิบาย:**\n
+    การวิเคราะห์รีวิวของสินค้าที่ได้รับการลดราคาพบว่า **Lazada** มีการรีวิวดี (4-5 ดาว) มากที่สุดที่ **663 รีวิว** เทียบกับ **Shopee** ที่มีเพียง **186 รีวิว** สิ่งนี้แสดงให้เห็นว่า Lazada สามารถทำให้ลูกค้าพึงพอใจได้มากกว่าเมื่อมีการลดราคา โดยการรีวิวเชิงบวกนั้นแสดงถึงความพึงพอใจของลูกค้าที่ได้รับจากประสบการณ์การซื้อสินค้าในช่วงลดราคา นอกจากนี้ รีวิวที่เป็นกลางหรือแย่ (1-2 ดาว) ของทั้งสองแพลตฟอร์มยังมีอยู่ในจำนวนเท่ากัน แต่ความแตกต่างของรีวิวเชิงบวกนั้นชัดเจนกว่า
+'''
+summary_msg = '''
+    **สรุป:** Lazada มีการรีวิวเชิงบวกมากที่สุดสำหรับสินค้าที่ได้รับการลดราคา โดยลูกค้าแสดงถึงความพึงพอใจมากกว่าเมื่อเปรียบเทียบกับ Shopee
+'''
+st.markdown(desc_msg)
+st.markdown(summary_msg)

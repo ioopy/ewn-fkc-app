@@ -108,10 +108,26 @@ retention_funnel.update_layout(
     yaxis_title="",
     xaxis_tickfont_size=16,
     yaxis_tickfont_size=16,
-    margin=dict(t=30),
     font=dict(
         size=18,
-    )
+    ),
+    legend=dict(
+        orientation="h",        # Set the legend orientation to horizontal
+        yanchor="bottom",       # Anchor the legend at the bottom
+        y=1,                    # Position the legend above the graph
+        xanchor="center",       # Center the legend horizontally
+        x=0.5                   # Set the legend to the center of the x-axis
+    ),
+    legend_title_text=''
 )
 
 st.plotly_chart(retention_funnel)
+desc_msg = '''
+    **คำอธิบาย:**\n
+    Retention Rate เป็นตัวชี้วัดความสามารถในการรักษาฐานลูกค้าให้กลับมาซื้อซ้ำ หลังจากการวิเคราะห์พบว่า **Lazada** มี Retention Rate สูงกว่าที่ **37.66%** ในขณะที่ Shopee มีเพียง **14.72%** ซึ่งแสดงให้เห็นว่า Lazada มีลูกค้าที่มีความภักดีมากกว่า กลับมาซื้อสินค้าบนแพลตฟอร์มบ่อยครั้ง อาจเป็นเพราะการให้บริการที่ดี หรือการมีส่วนลดและสิทธิพิเศษที่น่าสนใจ ซึ่งเป็นสิ่งที่ช่วยสร้างความผูกพันระหว่างแพลตฟอร์มและลูกค้า
+'''
+summary_msg = '''
+    **สรุป:** Lazada มี Retention Rate สูงกว่า Shopee แสดงถึงความสามารถในการรักษาฐานลูกค้าให้กลับมาซื้อซ้ำได้ดีกว่า
+'''
+st.markdown(desc_msg)
+st.markdown(summary_msg)

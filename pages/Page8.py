@@ -34,29 +34,36 @@ data_display = data[['marketplace', 'store', 'star_review', 'discount_price_form
 data_display.rename(columns={'store': 'ชื่อร้านค้า', 'star_review': 'คะแนนรีวิว', 'discount_price_format': 'ราคาขาย'}, inplace=True)
 st.dataframe(data_display, hide_index=True)
 
-data_group = data[['marketplace', 'star_review', 'price_range']]
-bubble_data = data.groupby(['marketplace','price_range', 'star_review']).size().reset_index(name='count')
+data_group = data[['marketplace', 'star_review', 'discount_price_format']]
+bubble_data = data.groupby(['marketplace','discount_price_format', 'star_review']).size().reset_index(name='count')
 
 # st.write(bubble_data)
 
 fig_bubble = px.scatter(
     bubble_data,
-    x='star_review',
-    y='price_range',
+    x='discount_price_format',
+    y='star_review',
     size='count',
     color='marketplace',
-    labels={'star_review': 'Star Review', 'price_range': 'Price Range', 'marketplace': 'Marketplace'},
+    labels={'star_review': 'Star Review', 'discount_price_format': 'Price', 'marketplace': 'Marketplace'},
     size_max=60, color_discrete_map=color_map
 )
 fig_bubble.update_layout(
-    xaxis_title="คะแนนรีวิว",
-    yaxis_title="ช่วงราคาขาย",
+    xaxis_title="ช่วงราคาขาย",
+    yaxis_title="คะแนนรีวิว",
     xaxis_tickfont_size=16,
     yaxis_tickfont_size=16,
-    margin=dict(t=20),
     font=dict(
         size=18,
-    )
+    ),
+    legend=dict(
+        orientation="h",        # Set the legend orientation to horizontal
+        yanchor="bottom",       # Anchor the legend at the bottom
+        y=1,                    # Position the legend above the graph
+        xanchor="center",       # Center the legend horizontally
+        x=0.5                   # Set the legend to the center of the x-axis
+    ),
+    legend_title_text='',
 )
 st.plotly_chart(fig_bubble, theme="streamlit")
 
@@ -73,8 +80,31 @@ fig.update_layout(
     margin=dict(t=20),
     font=dict(
         size=18,
-    )
+    ),
+    legend=dict(
+        orientation="h",        # Set the legend orientation to horizontal
+        yanchor="bottom",       # Anchor the legend at the bottom
+        y=1,                    # Position the legend above the graph
+        xanchor="center",       # Center the legend horizontally
+        x=0.5                   # Set the legend to the center of the x-axis
+    ),
+    legend_title_text='',
+    xaxis=dict(
+        tickvals=[0, 200, 400, 600, 1000],  # Define the tick positions 
+        ticktext=['0', '200', '400', '600', '1000']  # Define the tick labels
+    ),
+    
 )
 
 # Display the plot in Streamlit
 # st.plotly_chart(fig, theme="streamlit")
+
+desc_msg = '''
+    **คำอธิบาย:**\n
+    การวิเคราะห์คะแนนรีวิวเฉลี่ยตามช่วงราคาพบว่า สินค้าในช่วงราคา **501-1000 บาท** มีคะแนนรีวิวเฉลี่ยสูงสุดที่ **4.94** ซึ่งแสดงให้เห็นว่าสินค้าในช่วงราคานี้ได้รับการตอบรับที่ดีจากลูกค้า ทั้งในด้านคุณภาพและความคุ้มค่า ขณะที่สินค้าราคาต่ำกว่า 100 บาทก็ยังมีคะแนนรีวิวที่ดีเช่นกัน แต่ช่วงราคากลางถึงสูงเป็นช่วงที่ลูกค้าให้คะแนนสูงสุดเนื่องจากคุณภาพและมูลค่าของสินค้า
+'''
+summary_msg = '''
+    **สรุป:** สินค้าในช่วงราคา **501-1000 บาท** ได้รับคะแนนรีวิวเฉลี่ยสูงสุดแสดงถึงความพึงพอใจของลูกค้าในกลุ่มสินค้าราคากลางถึงสูง ซึ่งตอบสนองความต้องการในด้านคุณภาพ.
+'''
+st.markdown(desc_msg)
+st.markdown(summary_msg)

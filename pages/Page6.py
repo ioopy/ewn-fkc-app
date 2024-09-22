@@ -48,16 +48,19 @@ scatter_fig = px.scatter(data,
 scatter_fig.update_layout(
     xaxis_title="ส่วนลด (%)",
     yaxis_title="ยอดขาย",
-    legend_title_text="Marketplace",
     xaxis_tickfont_size=16,
     yaxis_tickfont_size=16,
-    margin=dict(t=20),
     font=dict(
         size=18,
     ),
     legend=dict(
-        y=0.9,
-    )
+        orientation="h",        # Set the legend orientation to horizontal
+        yanchor="bottom",       # Anchor the legend at the bottom
+        y=1,                    # Position the legend above the graph
+        xanchor="center",       # Center the legend horizontally
+        x=0.5                   # Set the legend to the center of the x-axis
+    ),
+    legend_title_text=''
 
 )
 
@@ -110,4 +113,12 @@ fig.update_layout(
 # st.write("Bubble charrt:  population of sold")
 # st.plotly_chart(fig, theme="streamlit")
 
-
+desc_msg = '''
+    **คำอธิบาย:**\n
+    การวิเคราะห์ความสัมพันธ์ระหว่างเปอร์เซ็นต์ส่วนลดและยอดขายแสดงให้เห็นว่า เมื่อมีการให้ส่วนลดในช่วง **10-20%** ยอดขายจะเพิ่มขึ้นมากที่สุด ซึ่งเป็นช่วงที่ลูกค้าตอบสนองดีที่สุด ส่วนลดที่มากกว่า 20% อาจไม่ช่วยเพิ่มยอดขายมากเท่าที่ควร เนื่องจากลูกค้าอาจสงสัยในคุณภาพของสินค้าที่มีการลดราคาสูงเกินไป ดังนั้น การกำหนดส่วนลดที่เหมาะสมมีผลต่อการกระตุ้นยอดขาย
+'''
+summary_msg = '''
+    **สรุป:** ส่วนลดในช่วง **10-20%** ส่งผลดีที่สุดต่อยอดขายทั้งใน Shopee และ Lazada การให้ส่วนลดที่เกิน 20% อาจไม่ได้ส่งผลเพิ่มยอดขายอย่างมาก
+'''
+st.markdown(desc_msg)
+st.markdown(summary_msg)
