@@ -5,6 +5,13 @@ import yaml
 from yaml.loader import SafeLoader
 from streamlit_authenticator.utilities.exceptions import (LoginError) 
 
+hide_github_icon = """
+.stActionButton {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+
 with open('conifg.yaml', 'r', encoding='utf-8') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
