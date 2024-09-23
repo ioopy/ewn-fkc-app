@@ -2,7 +2,7 @@ import streamlit as st
 from menu import menu_with_redirect
 import pandas as pd
 import plotly.express as px
-from utils.func import hide_header_icons
+from utils.func import break_page, hide_header_icons
 from utils.load_data import get_data, get_reviews
 from utils.text_editor import generate, get_color_template
 
@@ -144,7 +144,7 @@ lazada_clean = process_reviews(reviews, "lazada", thai_months, thai_month_order)
 
 st.markdown("**shopee**")
 st.plotly_chart(plot_graph_stack(shopee_clean))
-
+break_page()
 st.markdown("**lazada**")
 st.plotly_chart(plot_graph_stack(lazada_clean))
 
@@ -158,7 +158,7 @@ st.plotly_chart(plot_graph_stack(lazada_clean))
 # st.markdown("**Lazada 2023**")
 # st.plotly_chart(plot_graph_stack(lazada_clean))
 
-desc_msg = '''
+desc_msg1 = '''
     **คำอธิบาย:**\n
     จากกราฟสองอันที่แสดงสัดส่วนของยอดขายในช่วง **Double Day, Pre Double Day**, และ **Normal Day** แบ่งตามเดือน:
 
@@ -174,7 +174,8 @@ desc_msg = '''
     **3. Double Day:**
     - สัดส่วนยอดขายในช่วง Double Day มีความน่าสนใจในบางเดือน เช่น มิถุนายน (**26.32%**) และพฤศจิกายน (**3.45%**)
     - Double Day เองอาจมีสัดส่วนที่ต่ำกว่าวันปกติ แต่ก็ยังคงมีบทบาทในการกระตุ้นยอดขายในบางช่วง
-
+'''
+desc_msg2 = '''
     **การวิเคราะห์กราฟสอง:**
 
     **1. Normal Day:**
@@ -194,5 +195,7 @@ summary_msg = '''
     - **Pre Double Day** มียอดขายสูงขึ้นในเดือนตุลาคมและพฤศจิกายน ซึ่งเป็นช่วงก่อนแคมเปญ Double Day ขนาดใหญ่ (10/10 และ 11/11) แสดงว่าลูกค้าเตรียมตัวซื้อสินค้าล่วงหน้าก่อนถึงวันจริง
     - **Double Day** แม้จะมีสัดส่วนยอดขายต่ำกว่า แต่ก็ยังคงมียอดขายที่สำคัญในบางเดือน เช่น พฤษภาคม, มิถุนายน, และตุลาคม
 '''
-st.markdown(desc_msg)
+st.markdown(desc_msg1)
+break_page()
+st.markdown(desc_msg2)
 st.markdown(summary_msg)

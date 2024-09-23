@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 from menu import menu_with_redirect
-from utils.func import hide_header_icons
+from utils.func import break_page, hide_header_icons
 from utils.text_editor import generate
 from utils.load_data import get_data, get_reviews
 import plotly.express as px
@@ -105,6 +105,8 @@ fig.update_layout(
     ),
     legend_title_text=''
 )
+
+break_page()
 st.plotly_chart(fig)
 
 desc_msg = '''

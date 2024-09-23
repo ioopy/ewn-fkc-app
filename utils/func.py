@@ -23,3 +23,20 @@ def hide_header_icons():
                     </style>
                     """
     st.markdown(hide_github_icon, unsafe_allow_html=True)
+
+def break_page():
+    st.markdown(
+        """
+            <style type="text/css" media="print">
+            div.page-break
+            {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            </style>
+            <div class="page-break">
+                <!-- Content goes here -->
+            </div>
+        """,
+        unsafe_allow_html=True,
+    )

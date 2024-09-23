@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 from menu import menu_with_redirect
-from utils.func import hide_header_icons
+from utils.func import break_page, hide_header_icons
 from utils.text_editor import generate
 from utils.load_data import get_data, get_reviews
 
@@ -246,6 +246,7 @@ def get_total_sold_q1_q2():
     st.plotly_chart(fig, theme="streamlit")
 
 # Plot graph bar
+break_page()
 get_total_sold()
 desc_msg = '''
     **คำอธิบาย:**\n

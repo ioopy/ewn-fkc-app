@@ -2,7 +2,7 @@ import streamlit as st
 from menu import menu_with_redirect
 import pandas as pd
 import plotly.express as px
-from utils.func import hide_header_icons
+from utils.func import break_page, hide_header_icons
 from utils.load_data import get_data, get_reviews
 from utils.text_editor import generate
 
@@ -108,5 +108,6 @@ desc_msg = '''
 summary_msg = '''
     **สรุป:** สินค้าในช่วงราคา **501-1000 บาท** ได้รับคะแนนรีวิวเฉลี่ยสูงสุดแสดงถึงความพึงพอใจของลูกค้าในกลุ่มสินค้าราคากลางถึงสูง ซึ่งตอบสนองความต้องการในด้านคุณภาพ.
 '''
+break_page()
 st.markdown(desc_msg)
 st.markdown(summary_msg)
