@@ -17,9 +17,6 @@ def convert_amount_sold(amount_str):
 def hide_header_icons():
     hide_github_icon = """
                     <style>
-                    .stActionButton {
-                        visibility: hidden;
-                    }
                     </style>
                     """
     st.markdown(hide_github_icon, unsafe_allow_html=True)
